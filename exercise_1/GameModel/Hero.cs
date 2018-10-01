@@ -14,16 +14,26 @@ namespace GameModel
         {
             return HitPoints > 0;
         }
-        
+
         public int Attack()
         {
-            if (MainHandWeapon == null)
+            if (IsAlive())
             {
-                return Strength / 2;
+                if (MainHandWeapon == null)
+                {
+                    return Strength / 2;
+                }
+                return (MainHandWeapon.Attack * Strength) / 2;
             }
-            return (MainHandWeapon.Attack * Strength) / 2;
+            else
+            {
+                return 0;
+            }
+            
+
+            
         }
-        
+
         public void Defend(Hero opponent)
         {
             if (opponent == null)
